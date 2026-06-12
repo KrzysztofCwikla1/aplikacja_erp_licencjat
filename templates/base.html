@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}System ERP{% endblock %} - Firma Ceramica</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <style>
+        body { background:#f5f6f8; font-size:14px; }
+        .sidebar { background:#fff; min-height:100vh; border-right:1px solid #e3e6ea; }
+        .sidebar .nav-link { color:#555; border-radius:8px; margin:2px 8px; padding:8px 12px; font-size:14px; }
+        .sidebar .nav-link.active { background:#e7f1ff; color:#0d6efd; font-weight:500; }
+        .sidebar .nav-link:hover { background:#f0f2f5; }
+        .sidebar .nav-link i { width:20px; }
+        .nav-section { font-size:11px; text-transform:uppercase; color:#999; letter-spacing:.05em; padding:12px 16px 4px; }
+        .metric-card { background:#fff; border-radius:10px; padding:16px; border:1px solid #e3e6ea; }
+        .metric-label { font-size:12px; color:#888; }
+        .metric-value { font-size:22px; font-weight:600; }
+        .panel { background:#fff; border-radius:10px; border:1px solid #e3e6ea; padding:18px; margin-bottom:16px; }
+        .status-dot { width:8px; height:8px; border-radius:50%; display:inline-block; margin-right:6px; }
+        .topbar { background:#fff; border-bottom:1px solid #e3e6ea; padding:12px 24px; }
+        .logo { font-weight:600; font-size:16px; }
+        .logo-sub { font-size:11px; color:#888; }
+        .info-box { background:#f0f7ff; border-left:3px solid #0d6efd; padding:12px 14px; border-radius:6px; font-size:13px; margin-bottom:14px; }
+        .log-line { font-family:monospace; font-size:12px; color:#444; padding:3px 0; border-bottom:1px solid #f0f0f0; }
+        .toast-container { z-index:1100; }
+    </style>
+</head>
+<body>
+<div class="container-fluid">
+<div class="row">
+    <nav class="col-md-2 sidebar p-0">
+        <div class="p-3 border-bottom">
+            <div class="logo"><i class="bi bi-building"></i> System ERP</div>
+            <div class="logo-sub">Firma Ceramica S.p.A.</div>
+        </div>
+        <div class="nav-section">Funkcje podstawowe</div>
+        <ul class="nav flex-column">
+            <li><a class="nav-link {% if active=='dashboard' %}active{% endif %}" href="/"><i class="bi bi-grid-1x2"></i> Przegląd</a></li>
+            <li><a class="nav-link {% if active=='warehouse' %}active{% endif %}" href="/warehouse"><i class="bi bi-box-seam"></i> Magazyn</a></li>
+            <li><a class="nav-link {% if active=='production' %}active{% endif %}" href="/production"><i class="bi bi-gear-wide-connected"></i> Symulacja produkcji</a></li>
+            <li><a class="nav-link {% if active=='invoices' %}active{% endif %}" href="/invoices"><i class="bi bi-receipt"></i> Faktury</a></li>
+        </ul>
+        <div class="nav-section">Moduły rozszerzające</div>
+        <ul class="nav flex-column">
+            <li><a class="nav-link {% if active=='integration' %}active{% endif %}" href="/integration"><i class="bi bi-diagram-3"></i> Integracja danych</a></li>
+            <li><a class="nav-link {% if active=='lci' %}active{% endif %}" href="/lci"><i class="bi bi-tree"></i> Model LCI</a></li>
+            <li><a class="nav-link {% if active=='continuity' %}active{% endif %}" href="/continuity"><i class="bi bi-shield-check"></i> Ciągłość działania</a></li>
+        </ul>
+        <div class="nav-section">System</div>
+        <ul class="nav flex-column">
+            <li><a class="nav-link {% if active=='users' %}active{% endif %}" href="/users"><i class="bi bi-people"></i> Użytkownicy</a></li>
+        </ul>
+        <div class="p-3 mt-3 border-top" style="font-size:12px;">
+            <div><span class="status-dot bg-success" id="sb-cloud-dot"></span><span id="sb-cloud">ERP online</span></div>
+            <div><span class="status-dot bg-success"></span>Bufor: <span id="sb-buffer">-</span>%</div>
+            <div><span class="status-dot bg-warning"></span>Sync: <span id="sb-sync">-</span></div>
+        </div>
+    </nav>
+
+    <!-- MAIN -->
+    <main class="col-md-10 p-0">
+        <div class="topbar d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">{% block page_title %}{% endblock %}</h5>
+            <div class="d-flex align-items-center gap-3">
+                <span class="text-muted" style="font-size:12px;"><i class="bi bi-person-circle"></i> <span id="current-user">-</span></span>
+                <button class="btn btn-sm btn-outline-danger" onclick="doLogout()"><i class="bi bi-box-arrow-right"></i> Wyloguj</button>
+            </div>
+        </div>
+        <div class="p-4">
+        {% block content %}{% endblock %}
+        </div>
+    </main>
+</div>
+</div>
+
+<div class="toast-container position-fixed bottom-0 end-0 p-3" id="toast-container"></div>
+
+{% block modals %}{% endblock %}
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/static/common.js"></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

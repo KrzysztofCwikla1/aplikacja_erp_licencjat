@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Przegląd{% endblock %}
+{% block page_title %}Przegląd ogólny{% endblock %}
+{% block content %}
+<div class="row g-3 mb-3">
+    <div class="col"><div class="metric-card"><div class="metric-label">Przychód fakturowany</div><div class="metric-value" id="m-revenue">-</div></div></div>
+    <div class="col"><div class="metric-card"><div class="metric-label">Produkcja (m²)</div><div class="metric-value" id="m-production">-</div></div></div>
+    <div class="col"><div class="metric-card"><div class="metric-label">Wartość zapasów</div><div class="metric-value" id="m-inventory">-</div></div></div>
+    <div class="col"><div class="metric-card"><div class="metric-label">Emisja CO₂e</div><div class="metric-value" id="m-co2">-</div></div></div>
+</div>
+<div class="row g-3">
+    <div class="col-md-6"><div class="panel"><h6><i class="bi bi-tree-fill text-success"></i> Emisja CO₂e wg fazy LCI</h6><canvas id="dash-lci-chart" height="180"></canvas></div></div>
+    <div class="col-md-6"><div class="panel"><h6><i class="bi bi-shield-check text-primary"></i> Status systemu</h6>
+        <table class="table table-sm mb-0"><tbody>
+            <tr><td>Połączenie z chmurą</td><td class="text-end" id="ov-cloud">-</td></tr>
+            <tr><td>Bufor lokalny</td><td class="text-end" id="ov-buffer">-</td></tr>
+            <tr><td>Dostępność ERP (30 dni)</td><td class="text-end" id="ov-uptime">-</td></tr>
+            <tr><td>Operacje w kolejce offline</td><td class="text-end" id="ov-pending">-</td></tr>
+        </tbody></table></div></div>
+</div>
+{% endblock %}
+{% block scripts %}<script src="/static/pages/dashboard.js"></script>{% endblock %}

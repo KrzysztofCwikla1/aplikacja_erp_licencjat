@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Magazyn{% endblock %}
+{% block page_title %}Magazyn{% endblock %}
+{% block content %}
+<div class="panel">
+    <h6>Stan magazynu</h6>
+    <table class="table table-sm align-middle">
+        <thead><tr><th>Kod</th><th>Nazwa</th><th>Kategoria</th><th class="text-end">Stan</th><th class="text-end">Próg min.</th><th>Status</th><th></th></tr></thead>
+        <tbody id="warehouse-body"></tbody>
+    </table>
+</div>
+<div class="panel">
+    <h6>Zamówienia do dostawców</h6>
+    <div class="info-box"><i class="bi bi-info-circle"></i> Kliknij <strong>"Przyjmij"</strong> aby zasymulować dostawę – zamówiona ilość zostanie natychmiast dodana do magazynu.</div>
+    <table class="table table-sm align-middle"><thead><tr><th>Numer</th><th>Materiał</th><th class="text-end">Ilość</th><th>Dostawca</th><th>Status</th><th></th></tr></thead><tbody id="po-body"></tbody></table>
+</div>
+{% endblock %}
+{% block modals %}
+<div class="modal fade" id="orderModal" tabindex="-1"><div class="modal-dialog"><div class="modal-content">
+    <div class="modal-header"><h5 class="modal-title">Zamówienie do dostawcy</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+    <div class="modal-body">
+        <p class="mb-2">Materiał: <strong id="order-mat-name">-</strong></p>
+        <div id="order-supplier-info" class="info-box d-none"></div>
+        <label class="form-label">Ilość do zamówienia (t)</label>
+        <input type="number" class="form-control" id="order-qty" value="30">
+        <input type="hidden" id="order-mat-code">
+    </div>
+    <div class="modal-footer"><button class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
+        <button class="btn btn-primary" onclick="submitOrder()">Złóż zamówienie</button></div>
+</div></div></div>
+{% endblock %}
+{% block scripts %}<script src="/static/pages/warehouse.js"></script>{% endblock %}

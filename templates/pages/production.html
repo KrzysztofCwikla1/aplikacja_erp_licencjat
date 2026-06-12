@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Produkcja{% endblock %}
+{% block page_title %}Symulacja produkcji{% endblock %}
+{% block content %}
+<div class="info-box"><i class="bi bi-info-circle"></i> Panel symulacji produkcji. Każdy produkt ma recepturę – określoną mieszankę surowców. Wybierz produkt i ilość, a system pokaże zapotrzebowanie i zużyje surowce zgodnie z recepturą.</div>
+<div class="row g-3">
+    <div class="col-md-5">
+        <div class="panel">
+            <h6>Uruchom produkcję</h6>
+            <label class="form-label">Produkt</label>
+            <select class="form-select mb-3" id="prod-product" onchange="updateRecipePreview()"></select>
+            <label class="form-label">Ilość do wyprodukowania (m²)</label>
+            <input type="number" class="form-control mb-3" id="prod-amount" value="500" oninput="updateRecipePreview()">
+            <button class="btn btn-primary w-100" id="prod-run-btn" onclick="runProduction()"><i class="bi bi-play-fill"></i> Produkuj</button>
+        </div>
+    </div>
+    <div class="col-md-7">
+        <div class="panel">
+            <h6>Receptura i zapotrzebowanie na surowce</h6>
+            <table class="table table-sm align-middle">
+                <thead><tr><th>Surowiec</th><th class="text-end">Na 1 m²</th><th class="text-end">Potrzeba</th><th class="text-end">Stan</th><th>Status</th></tr></thead>
+                <tbody id="recipe-body"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="panel">
+    <h6>Aktualne stany (podgląd na żywo)</h6>
+    <table class="table table-sm"><thead><tr><th>Kod</th><th>Nazwa</th><th>Kategoria</th><th class="text-end">Stan</th></tr></thead><tbody id="prod-stock-body"></tbody></table>
+</div>
+{% endblock %}
+{% block scripts %}<script src="/static/pages/production.js"></script>{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Użytkownicy{% endblock %}
+{% block page_title %}Użytkownicy{% endblock %}
+{% block content %}
+<div class="panel">
+    <div class="d-flex justify-content-between"><h6>Użytkownicy systemu</h6>
+        <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#userModal"><i class="bi bi-person-plus"></i> Dodaj użytkownika</button></div>
+    <table class="table table-sm"><thead><tr><th>Nazwa</th><th>Imię i nazwisko</th><th>Utworzono</th></tr></thead><tbody id="users-body"></tbody></table>
+</div>
+{% endblock %}
+{% block modals %}
+<div class="modal fade" id="userModal" tabindex="-1"><div class="modal-dialog"><div class="modal-content">
+    <div class="modal-header"><h5 class="modal-title">Nowy użytkownik</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+    <div class="modal-body">
+        <div class="mb-2"><label class="form-label">Nazwa użytkownika</label><input class="form-control" id="nu-username"></div>
+        <div class="mb-2"><label class="form-label">Imię i nazwisko</label><input class="form-control" id="nu-fullname"></div>
+        <div class="mb-2"><label class="form-label">Hasło</label><input type="password" class="form-control" id="nu-password"></div>
+    </div>
+    <div class="modal-footer"><button class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
+        <button class="btn btn-primary" onclick="createUser()">Utwórz</button></div>
+</div></div></div>
+{% endblock %}
+{% block scripts %}<script src="/static/pages/users.js"></script>{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Integracja danych{% endblock %}
+{% block page_title %}Moduł integracji danych{% endblock %}
+{% block content %}
+<div class="row g-3 mb-3">
+    <div class="col"><div class="metric-card"><div class="metric-label">Rekordy magazynu</div><div class="metric-value" id="int-wh">-</div></div></div>
+    <div class="col"><div class="metric-card"><div class="metric-label">Rekordy faktur</div><div class="metric-value" id="int-inv">-</div></div></div>
+    <div class="col"><div class="metric-card"><div class="metric-label">Zlecenia produkcyjne</div><div class="metric-value" id="int-prod">-</div></div></div>
+</div>
+<div class="row g-3">
+    <div class="col-md-7"><div class="panel"><h6>Schematy mapowania: źródło &rarr; cel</h6>
+        <table class="table table-sm"><thead><tr><th>Źródło (tabela/API)</th><th>Przekształcenie</th><th>Cel</th></tr></thead><tbody id="mappings-body"></tbody></table></div></div>
+    <div class="col-md-5"><div class="panel"><h6>Dziennik operacji integracji (na żywo)</h6>
+        <div class="d-flex justify-content-between mb-2"><small class="text-muted">Co moduł właśnie zrobił:</small>
+        <button class="btn btn-sm btn-outline-primary" onclick="loadIntegration()"><i class="bi bi-arrow-clockwise"></i> Uruchom</button></div>
+        <div id="integration-log"></div></div></div>
+</div>
+{% endblock %}
+{% block scripts %}<script src="/static/pages/integration.js"></script>{% endblock %}

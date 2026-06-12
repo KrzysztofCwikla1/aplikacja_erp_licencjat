@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Faktury{% endblock %}
+{% block page_title %}Faktury{% endblock %}
+{% block content %}
+<div class="panel">
+    <div class="d-flex justify-content-between"><h6>Faktury sprzedaży</h6>
+        <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#invoiceModal"><i class="bi bi-plus"></i> Nowa faktura</button></div>
+    <table class="table table-sm align-middle"><thead><tr><th>Numer</th><th>Klient</th><th>Data</th><th>Termin</th><th class="text-end">Brutto</th><th>Status</th><th></th></tr></thead><tbody id="invoices-body"></tbody></table>
+</div>
+{% endblock %}
+{% block modals %}
+<div class="modal fade" id="invoiceModal" tabindex="-1"><div class="modal-dialog modal-lg"><div class="modal-content">
+    <div class="modal-header"><h5 class="modal-title">Nowa faktura</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+    <div class="modal-body">
+        <div class="row g-2 mb-3">
+            <div class="col-md-6"><label class="form-label">Nazwa klienta</label><input class="form-control" id="inv-client" value="Nowak Sp. z o.o."></div>
+            <div class="col-md-6"><label class="form-label">NIP</label><input class="form-control" id="inv-nip" value="PL1234567890"></div>
+            <div class="col-12"><label class="form-label">Adres</label><input class="form-control" id="inv-address" value="ul. Przemysłowa 5, Opoczno"></div>
+        </div>
+        <h6>Pozycja</h6>
+        <div class="row g-2">
+            <div class="col-md-6"><label class="form-label">Opis</label><input class="form-control" id="item-desc" value="Płytki Bianco 45×45"></div>
+            <div class="col-md-3"><label class="form-label">Ilość</label><input class="form-control" id="item-qty" type="number" value="3400"></div>
+            <div class="col-md-3"><label class="form-label">Cena jedn. (EUR)</label><input class="form-control" id="item-price" type="number" step="0.01" value="12.24"></div>
+        </div>
+    </div>
+    <div class="modal-footer"><button class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
+        <button class="btn btn-primary" onclick="createInvoice()">Wystaw i generuj PDF</button></div>
+</div></div></div>
+{% endblock %}
+{% block scripts %}<script src="/static/pages/invoices.js"></script>{% endblock %}

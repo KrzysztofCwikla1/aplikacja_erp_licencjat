@@ -1,7 +1,7 @@
 
 ## Logowanie
 
-Domyslny uzytkownik: login: admin / hasło: admin123
+Domyślny użytkownik: login: admin / hasło: admin123
 
 ## Uruchomienie
 Komendy należy wykonać w folderze aplikacji np. C:\Users\"nazwa_uzytkownika"\Desktop\erp_app> 
